@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { authActions } from '../store';
+import { authActions } from '../store/auth';
 
-const Header = ()=>{
+const Header = (props)=>{
 const dispatch = useDispatch();
-    const name = useSelector((state)=> state.name)
+    const name = useSelector((state)=> state.profiles.currentUser.name)
     const handleLogOutClick = ()=>{
     dispatch(authActions.logOut());
+    props.setHasAccount(true);
     }
 return (
 <header className = 'header'>

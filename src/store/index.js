@@ -1,27 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { createSlice} from '@reduxjs/toolkit';
-import { getSystemErrorName } from 'util';
+import authentificationSlice from './auth';
+import profilesReducer from './profiles';
+import counterReducer from './counter'
 
 
 
-const initialAuthentificationState = {isAuthenticated: false, name: ''};
-const authentificationSlice = createSlice({
-    name: 'authentification',
-    initialState: initialAuthentificationState,
-    reducers: {
-        logIn(state){
-            state.isAuthenticated = true;
-        },
-        logOut(state){
-            state.isAuthenticated = false;
-        },
-        getName(state, action){
-            state.name = action.payload
-        }
-    }
-})
 const store = configureStore({
- reducer: authentificationSlice.reducer
+ reducer: {  auth: authentificationSlice, counter: counterReducer, profiles: profilesReducer },
 });
-export const authActions = authentificationSlice.actions;
+
 export default store;
